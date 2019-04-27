@@ -13,7 +13,7 @@ import curso.devdojomicroservices.core.property.JwtConfiguration;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
+public class TokenSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
     protected final JwtConfiguration jwtConfiguration;
 
@@ -32,6 +32,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers(jwtConfiguration.getLoginUrl()).permitAll()
             .antMatchers("/course/v1/admin/**").hasRole("ADMIN")
+            .antMatchers("/auth/user/**").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated();
     }
 

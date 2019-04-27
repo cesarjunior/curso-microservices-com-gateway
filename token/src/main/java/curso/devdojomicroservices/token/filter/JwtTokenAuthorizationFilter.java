@@ -16,9 +16,7 @@ import curso.devdojomicroservices.token.converter.TokenConverter;
 import curso.devdojomicroservices.token.util.SecurityContextUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JwtTokenAuthorizationFilter extends OncePerRequestFilter {
 	

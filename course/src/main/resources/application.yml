@@ -29,3 +29,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/course_devdojo
     username: postgres
     password: postgres
+    
+jwt:
+  config:
+    type: signed

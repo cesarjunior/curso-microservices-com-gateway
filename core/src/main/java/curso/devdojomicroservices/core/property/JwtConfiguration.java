@@ -8,11 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Configuration
-@ConfigurationProperties(prefix = "jwt.config")
 @Getter
 @Setter
 @ToString
+@Configuration
+@ConfigurationProperties(prefix = "jwt.config")
 public class JwtConfiguration {
 	
 	private String loginUrl = "/login/**";

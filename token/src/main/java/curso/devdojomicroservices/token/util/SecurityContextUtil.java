@@ -17,8 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SecurityContextUtil {
-	
-    private SecurityContextUtil() {}
+    private SecurityContextUtil() {
+
+    }
 
     public static void setSecurityContext(SignedJWT signedJWT) {
         try {
@@ -28,12 +29,13 @@ public class SecurityContextUtil {
                 throw new JOSEException("Username missing from JWT");
 
             List<String> authorities = claims.getStringListClaim("authorities");
-            UserApplication applicationUser = UserApplication.builder()
-										                    .id(claims.getLongClaim("userId"))
-										                    .username(username)
-										                    .role(String.join(",", authorities))
-										                    .build();
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(applicationUser, null, createAuthories(authorities));
+            UserApplication applicationUser = UserApplication
+                    .builder()
+                    .id(claims.getLongClaim("userId"))
+                    .username(username)
+                    .role(String.join(",", authorities))
+                    .build();
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(applicationUser, null, createAuthorities(authorities));
             auth.setDetails(signedJWT.serialize());
 
             SecurityContextHolder.getContext().setAuthentication(auth);
@@ -43,7 +45,7 @@ public class SecurityContextUtil {
         }
     }
 
-    private static List<SimpleGrantedAuthority> createAuthories(List<String> authorities) {
+    private static List<SimpleGrantedAuthority> createAuthorities(List<String> authorities) {
         return authorities.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(toList());

@@ -1,4 +1,4 @@
-package curso.devdojomicroservices.auth.configuration;
+package curso.devdojomicroservices.auth.security.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -9,21 +9,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import curso.devdojomicroservices.auth.filter.JwtAuthenticationFilter;
+import curso.devdojomicroservices.auth.security.filter.JwtAuthenticationFilter;
 import curso.devdojomicroservices.core.property.JwtConfiguration;
-import curso.devdojomicroservices.token.config.SecurityTokenConfig;
+import curso.devdojomicroservices.token.config.TokenSecurityConfiguration;
 import curso.devdojomicroservices.token.converter.TokenConverter;
 import curso.devdojomicroservices.token.creator.TokenCreator;
 import curso.devdojomicroservices.token.filter.JwtTokenAuthorizationFilter;
 
 @EnableWebSecurity
-public class WebSecurityConfiguration extends SecurityTokenConfig {
+public class AuthSecurityConfiguration extends TokenSecurityConfiguration {
 
 	private final UserDetailsService userDetailsService;
 	private final TokenCreator tokenCreator;
 	private final TokenConverter tokenConverter;
 
-	public WebSecurityConfiguration(JwtConfiguration jwtConfiguration,
+	public AuthSecurityConfiguration(JwtConfiguration jwtConfiguration,
                                      @Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService,
                                      TokenCreator tokenCreator, 
                                      TokenConverter tokenConverter) {

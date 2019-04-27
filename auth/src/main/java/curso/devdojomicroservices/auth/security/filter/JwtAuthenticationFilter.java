@@ -1,4 +1,4 @@
-package curso.devdojomicroservices.auth.filter;
+package curso.devdojomicroservices.auth.security.filter;
 
 import java.io.IOException;
 import java.util.Collections;

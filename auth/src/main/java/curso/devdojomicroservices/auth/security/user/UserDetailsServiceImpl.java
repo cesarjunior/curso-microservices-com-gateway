@@ -1,4 +1,4 @@
-package curso.devdojomicroservices.auth.user;
+package curso.devdojomicroservices.auth.security.user;
 
 import java.util.Collection;
 
