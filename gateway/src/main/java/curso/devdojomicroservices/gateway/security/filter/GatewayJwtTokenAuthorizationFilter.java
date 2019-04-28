@@ -1,5 +1,6 @@
 package curso.devdojomicroservices.gateway.security.filter;
 
+/*
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +15,9 @@ import curso.devdojomicroservices.token.converter.TokenConverter;
 import curso.devdojomicroservices.token.filter.JwtTokenAuthorizationFilter;
 import curso.devdojomicroservices.token.util.SecurityContextUtil;
 import lombok.SneakyThrows;
-
-public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFilter {
-
+*/
+public class GatewayJwtTokenAuthorizationFilter/* extends JwtTokenAuthorizationFilter*/ {
+/*
     public GatewayJwtTokenAuthorizationFilter(JwtConfiguration jwtConfiguration, TokenConverter tokenConverter) {
         super(jwtConfiguration, tokenConverter);
     }
@@ -37,15 +38,12 @@ public class GatewayJwtTokenAuthorizationFilter extends JwtTokenAuthorizationFil
 
         String token = header.replace(jwtConfiguration.getHeader().getPrefix(), "").trim();
 
-        String signedToken = tokenConverter.decryptToken(token);
+        SecurityContextUtil.setSecurityContext(decryptValidating(token));
 
-        tokenConverter.validateTokenSignature(signedToken);
-
-        SecurityContextUtil.setSecurityContext(SignedJWT.parse(signedToken));
-
-        if (jwtConfiguration.getType().equalsIgnoreCase("signed"))
-            RequestContext.getCurrentContext().addZuulRequestHeader("Authorization", jwtConfiguration.getHeader().getPrefix() + signedToken);
+        //if (jwtConfiguration.getType().equalsIgnoreCase("signed"))
+            RequestContext.getCurrentContext().addZuulRequestHeader("Authorization", header);
 
         chain.doFilter(request, response);
     }
+    */
 }

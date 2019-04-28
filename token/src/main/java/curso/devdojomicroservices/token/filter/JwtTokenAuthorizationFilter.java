@@ -44,14 +44,14 @@ public class JwtTokenAuthorizationFilter extends OncePerRequestFilter {
 	}
 	
 	@SneakyThrows
-    private SignedJWT decryptValidating(String encryptedToken) {
+    protected SignedJWT decryptValidating(String encryptedToken) {
         String signedToken = tokenConverter.decryptToken(encryptedToken);
         tokenConverter.validateTokenSignature(signedToken);
         return SignedJWT.parse(signedToken);
     }
 
     @SneakyThrows
-    private SignedJWT validate(String signedToken) {
+    protected SignedJWT validate(String signedToken) {
         tokenConverter.validateTokenSignature(signedToken);
         return SignedJWT.parse(signedToken);
     }
